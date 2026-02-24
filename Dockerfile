@@ -29,3 +29,11 @@ RUN  rm sqlcl-latest.zip
 #Dependencias do Python
 WORKDIR  datawarehouse/scripts/ia-qualificarpartes/classificador
 RUN  pip3 install -r requirements.txt
+RUN pip3 install fastapi uvicorn
+
+EXPOSE 8080
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+
+
+
