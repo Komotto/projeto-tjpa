@@ -14,6 +14,8 @@ RUN  rpm -ivh jdk-17.0.12_linux-x64_bin.rpm
 #Instalar Python
 RUN  microdnf install python3 python3-pip -y
 
+RUN  pip3 install -r requirements.txt
+
 #Instalar SQLcl
 WORKDIR  /opt
 RUN  wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
@@ -28,7 +30,6 @@ WORKDIR  /app/datawarehouse/scripts/ia-qualificarpartes/classificador
 
 RUN ls -R /app
 
-RUN  pip3 install -r requirements.txt
 RUN  pip3 install fastapi uvicorn
 
 #Permissões do Openshift
