@@ -3,9 +3,6 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal
 WORKDIR  /app
 COPY . .
 
-#Instalar Git
-RUN  dnf install git -y
-
 #Instalar Java correto para o projeto
 RUN  wget https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.rpm
 RUN  rpm -ivh jdk-17.0.12_linux-x64_bin.rpm
