@@ -1,21 +1,12 @@
-from fastapi import FastAPI
 import subprocess
+from fastapi import FastAPI, BackgroundTasks
 
 app = FastAPI()
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+def rodar():
+    subprocess.run(["./root.sh"])
 
 @app.post("/executar")
-def executar():
-    result = subprocess.run(
-        ["./root.sh"],
-        capture_output=True,
-        text=True
-    )
-    return {
-        "returncode": result.returncode,
-        "stdout": result.stdout,
-        "stderr": result.stderr
-    }
+def executar(background_tasks: BackgroundTasks):
+    background_tasks.add_task(rodar)
+    return {"status": "processamento iniciado"}
