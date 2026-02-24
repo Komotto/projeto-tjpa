@@ -10,3 +10,11 @@ def rodar():
 def executar(background_tasks: BackgroundTasks):
     background_tasks.add_task(rodar)
     return {"status": "processamento iniciado"}
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"status": "API ativa"}
