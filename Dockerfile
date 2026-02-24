@@ -39,6 +39,8 @@ RUN  microdnf clean all
 
 EXPOSE  8080
 
+WORKDIR /app
+
 CMD  ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
 
 
