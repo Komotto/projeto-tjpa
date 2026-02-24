@@ -1,11 +1,11 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal
 
 WORKDIR  /app
-COPY . .
+COPY  . .
 
 #Instalar tools
-RUN microdnf install unzip
-RUN microdnf install wget
+RUN  microdnf install -y unzip
+RUN  microdnf install -y wget
 
 #Instalar Java correto para o projeto
 RUN  wget https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.rpm
@@ -29,7 +29,9 @@ RUN  pip3 install -r requirements.txt
 RUN  pip3 install fastapi uvicorn
 
 #Permissões do Openshift
-RUN chmod -R g+rwX /app /opt/sqlcl
+RUN  chmod -R g+rwX /app /opt/sqlcl
+
+RUN  microdnf clean all
 
 EXPOSE  8080
 
