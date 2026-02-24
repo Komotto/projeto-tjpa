@@ -10,7 +10,7 @@ RUN  rpm -ivh jdk-17.0.12_linux-x64_bin.rpm
 #Instalar Python
 RUN  yum install python3 python3-pip -y
 
-#Instalar SCLcl
+#Instalar SQLcl
 WORKDIR  /opt
 RUN  wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
 RUN  unzip sqlcl-latest.zip -d /opt
@@ -23,6 +23,9 @@ RUN  rm sqlcl-latest.zip
 WORKDIR  datawarehouse/scripts/ia-qualificarpartes/classificador
 RUN  pip3 install -r requirements.txt
 RUN  pip3 install fastapi uvicorn
+
+#Permissões do Openshift
+RUN chmod -R g+rwX /app /opt/sqlcl
 
 EXPOSE  8080
 
