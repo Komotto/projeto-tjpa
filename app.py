@@ -18,7 +18,7 @@ def executar():
     open(LOCK_FILE, "w").close()
 
     try:
-        subprocess.run(["./root.sh"], check=True)
+        subprocess.run(["/app/datawarehouse/scripts/ia-qualificarpartes/root.sh"], check=True)
     finally:
         os.remove(LOCK_FILE)
 
