@@ -1,9 +1,10 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal
 
 WORKDIR  /app
+COPY . .
 
 #variável de Ambiente
-ENV CREDENCIAIS_DW=user/password@//host:1521:service 
+ENV  CREDENCIAIS_DW=user/password@//host:1521:service 
 
 #Clonar Repositório
 RUN  git clone https://gitlab.tjpa.jus.br/administracao-de-dados/datawarehouse.git .
@@ -19,6 +20,7 @@ RUN  rpm -ivh jdk-17.0.12_linux-x64_bin.rpm
 RUN  yum install python3 python3-pip -y
 
 #Instalar SCLcl
+WORKDIR  /opt
 RUN  wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
 RUN  unzip sqlcl-latest.zip -d /opt
 RUN  chmod -R a+rX /opt/sqlcl
@@ -29,11 +31,11 @@ RUN  rm sqlcl-latest.zip
 #Dependencias do Python
 WORKDIR  datawarehouse/scripts/ia-qualificarpartes/classificador
 RUN  pip3 install -r requirements.txt
-RUN pip3 install fastapi uvicorn
+RUN  pip3 install fastapi uvicorn
 
-EXPOSE 8080
+EXPOSE  8080
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD  ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
 
 
 
