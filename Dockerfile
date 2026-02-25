@@ -30,16 +30,15 @@ RUN  rm sqlcl-latest.zip
 #Dependencias do Python
 WORKDIR  /app/datawarehouse/scripts/ia-qualificarpartes/classificador
 
-RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/*.sh
-RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/classificador/*.sh
-RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/root.sh
-
 RUN ls -R /app
 
 RUN  pip3 install fastapi uvicorn
 
-#Permissões do Openshift
+#Permissões 
 RUN  chmod -R g+rwX /app /opt/sqlcl
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/*.sh
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/classificador/*.sh
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/root.sh
 
 RUN  microdnf clean all
 
