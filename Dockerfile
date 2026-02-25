@@ -6,9 +6,10 @@ RUN  git clone https://gitlab.tjpa.jus.br/administracao-de-dados/datawarehouse.g
 RUN  cp -r datawarehouse/scripts/ia-qualificarpartes /app/
 
 WORKDIR  /app
-COPY  . .
 
-RUN  ls -R /app/datawarehouse/scripts/ia-qualificarpartes
+RUN  ls -R /app/ia-qualificarpartes
+
+COPY . .
 
 #Instalar tools
 RUN  microdnf install unzip -y
