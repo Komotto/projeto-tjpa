@@ -1,5 +1,8 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal
 
+RUN  git clone https://gitlab.tjpa.jus.br/administracao-de-dados/datawarehouse.git
+RUN  cp -r datawarehouse/scripts/ia-qualificarpartes /app/
+
 WORKDIR  /app
 COPY  . .
 
@@ -9,9 +12,6 @@ RUN  ls -R /app/datawarehouse/scripts/ia-qualificarpartes
 RUN  microdnf install unzip -y
 RUN  microdnf install wget -y
 RUN  microdnf install git -y
-
-RUN  git clone https://gitlab.tjpa.jus.br/administracao-de-dados/datawarehouse.git
-RUN  cp -r datawarehouse/scripts/ia-qualificarpartes /app/
 
 #Instalar Java correto para o projeto
 RUN  wget https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.rpm
