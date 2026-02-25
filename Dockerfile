@@ -3,6 +3,10 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal
 WORKDIR  /app
 COPY  . .
 
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/*.sh
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/classificador/*.sh
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/root.sh
+
 #Instalar tools
 RUN  microdnf install unzip -y
 RUN  microdnf install wget -y
@@ -36,9 +40,6 @@ RUN  pip3 install fastapi uvicorn
 
 #Permissões 
 RUN  chmod -R g+rwX /app /opt/sqlcl
-RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/*.sh
-RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/classificador/*.sh
-RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/root.sh
 
 RUN  microdnf clean all
 
