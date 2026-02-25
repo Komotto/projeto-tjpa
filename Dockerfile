@@ -8,7 +8,7 @@ RUN  cp -r datawarehouse/scripts/ia-qualificarpartes /app/datawarehouse/scripts/
 
 WORKDIR  /app
 
-RUN  ls -R /app/ia-qualificarpartes
+RUN  ls -R /app/datawarehouse/scripts/ia-qualificarpartes
 
 COPY . .
 
