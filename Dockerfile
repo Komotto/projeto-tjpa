@@ -30,6 +30,10 @@ RUN  rm sqlcl-latest.zip
 #Dependencias do Python
 WORKDIR  /app/datawarehouse/scripts/ia-qualificarpartes/classificador
 
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/*.sh
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/classificador/*.sh
+RUN  chmod +x /app/datawarehouse/scripts/ia-qualificarpartes/root.sh
+
 RUN ls -R /app
 
 RUN  pip3 install fastapi uvicorn
