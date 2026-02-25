@@ -4,8 +4,10 @@ WORKDIR  /app
 COPY  . .
 
 #Instalar tools
-RUN  microdnf install -y unzip
-RUN  microdnf install -y wget
+RUN  microdnf install unzip -y
+RUN  microdnf install wget -y
+
+RUN  microdnf install git -y
 
 #Instalar Java correto para o projeto
 RUN  wget https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.rpm
