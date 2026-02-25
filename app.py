@@ -5,6 +5,7 @@ import os
 app = FastAPI()
 
 LOCK_FILE = "/tmp/process.lock"
+ROOT_SCRIPT = "/app/datawarehouse/scripts/ia-qualificarpartes/root.sh"
 
 @app.get("/")
 def health():
@@ -18,8 +19,11 @@ def executar():
     open(LOCK_FILE, "w").close()
 
     try:
-        subprocess.run(["/app/datawarehouse/scripts/ia-qualificarpartes/root.sh"], check=True)
+        subprocess.run(["bash", ROOT_SCRIPT], check=True)
+    except subprocess.CalledProcessError as e:
+        return {"erro": str(e)}
     finally:
-        os.remove(LOCK_FILE)
+        if os.path.exists(LOCK_FILE):
+            os.remove(LOCK_FILE)
 
     return {"status": "Processo finalizado"}
