@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal
 
 WORKDIR  /app
-COPY  . .
+COPY  https://gitlab.tjpa.jus.br/administracao-de-dados/datawarehouse/-/tree/master/scripts/ia-qualificarpartes .
 
 RUN ls -R /app/datawarehouse/scripts/ia-qualificarpartes
 
